@@ -10,3 +10,11 @@ __pycache__/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+
+# ===== SSH keys / credentials (NEVER COMMIT) =====
+*.pem
+*.ppk
+*.key
+
+# Keys folder (추천: keys/ 에 보관한다면)
+keys/
