@@ -1,9 +1,14 @@
-.venv
-__pycache__
-*.pyc
+# ===== secrets / keys =====
+*.pem
+*.ppk
+*.key
+keys/
+
+# ===== git =====
 .git
-# Terraform
-**/.terraform/
-*.tfstate
-*.tfstate.backup
-.terraform.lock.hcl
+.gitignore
+
+# (선택) 로컬 잡다 파일
+**/__pycache__/
+*.log
+.env
