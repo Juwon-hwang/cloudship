@@ -52,6 +52,6 @@ jobs:
             --instance-ids "${INSTANCE_ID}" \
             --document-name "AWS-RunShellScript" \
             --comment "cloudship deploy ${IMAGE_TAG}" \
-            --parameters '{"commands":["sudo docker pull '"${IMAGE_URI}"'","sudo docker stop cloudship || true","sudo docker rm cloudship || true","sudo docker run -d --name cloudship -p 80:8000 '"${IMAGE_URI}"'"]}' \
+            --parameters '{"commands":["sudo docker pull '"${IMAGE_URI}"'","sudo docker stop cloudship-app || true","sudo docker rm cloudship-app || true","sudo docker run -d --name cloudship-app -p 80:8000 '"${IMAGE_URI}"'"]}' \
             --output text
 
