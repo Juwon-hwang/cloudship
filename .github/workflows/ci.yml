@@ -57,7 +57,7 @@ jobs:
               \"sudo docker pull ${IMAGE_URI}\",
               \"sudo docker stop cloudship-app || true\",
               \"sudo docker rm cloudship-app || true\",
-              \"sudo docker run -d --name cloudship-app -p 80:8000 ${IMAGE_URI}\"
+              \"sudo docker run -d --name cloudship-app -p 80:8000 -e GIT_SHA=${IMAGE_TAG} ${IMAGE_URI}\"
             ]}" \
             --output text
 
