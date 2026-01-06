@@ -15,6 +15,9 @@ resource "aws_instance" "app" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   key_name               = var.key_name
 
+  # 이게 있어야 EC2가 IAM Role(=SSM/ECR 권한)을 실제로 씀
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+
   user_data = file("${path.module}/user_data.sh")
 
   tags = {

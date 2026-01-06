@@ -4,6 +4,7 @@ set -eux
 apt-get update -y
 apt-get install -y ca-certificates curl gnupg
 
+# Docker install
 install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/docker.gpg
@@ -20,3 +21,12 @@ systemctl enable docker
 systemctl start docker
 
 usermod -aG docker ubuntu
+
+# SSM Agent (ensure)
+if ! systemctl list-unit-files | grep -q amazon-ssm-agent; then
+  apt-get install -y snapd || true
+  snap install amazon-ssm-agent --classic || true
+fi
+
+systemctl enable --now snap.amazon-ssm-agent.amazon-ssm-agent.service || true
+systemctl restart snap.amazon-ssm-agent.amazon-ssm-agent.service || true

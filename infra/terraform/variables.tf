@@ -22,6 +22,12 @@ variable "key_name" {
 }
 
 variable "my_ip_cidr" {
-  description = "My public IP CIDR for SSH access"
+  description = "My public IP CIDR for SSH access (used only when enable_ssh=true)"
   type        = string
+}
+
+variable "enable_ssh" {
+  description = "Temporarily allow SSH for break-glass access"
+  type        = bool
+  default     = false
 }

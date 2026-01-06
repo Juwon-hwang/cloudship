@@ -1,14 +1,18 @@
 resource "aws_security_group" "ec2_sg" {
   name        = "${var.project_name}-ec2-sg"
-  description = "Allow SSH from my IP and HTTP from all"
+  description = "Allow HTTP; SSH optional (SSM-first)"
   vpc_id      = aws_vpc.main.id
 
-  ingress {
-    description = "SSH from my IP"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.my_ip_cidr]
+  # Optional SSH
+  dynamic "ingress" {
+    for_each = var.enable_ssh ? [1] : []
+    content {
+      description = "SSH from my IP (temporary)"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = [var.my_ip_cidr]
+    }
   }
 
   ingress {
@@ -20,7 +24,7 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   egress {
-    description = "All outbound"
+    description = "All outbound (needed for SSM/ECR/OS updates)"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
