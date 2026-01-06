@@ -8,7 +8,7 @@ keys/
 .git
 .gitignore
 
-# (선택) 로컬 잡다 파일
+# ==== 로컬 잡다 파일 ====
 **/__pycache__/
 *.log
 .env
