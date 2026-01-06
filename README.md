@@ -1,4 +1,4 @@
-# CloudShip 🚀
+# CloudShip
 GitOps 기반 EC2 자동 배포 AWS 포트폴리오 프로젝트  
 Git push → GitHub Actions → ECR → SSM → EC2(Docker) 자동 배포
 
